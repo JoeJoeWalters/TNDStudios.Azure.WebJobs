@@ -37,9 +37,22 @@ namespace WebJob
         [NoAutomaticTrigger]
         public void MyContiniousMethod()
         {
-            while (true != false)
+            try
             {
-                Thread.Sleep(1000);
+                while (true != false)
+                {
+                    Thread.Sleep(1000);
+                    Random rand = new Random();
+                    if (rand.NextDouble() > 0.75)
+                        throw new Exception("Random Kill to end job");
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                // If this ends the whole thing ends
             }
         }
     }
