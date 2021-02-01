@@ -25,7 +25,7 @@ namespace WebJob
             IHost host = builder.Build();
             using (host)
             {
-                host.StartAsync().Wait();
+                host.Start();
                 IJobHost jobHost = (IJobHost)host.Services.GetService(typeof(IJobHost));
                 jobHost.CallAsync(nameof(Functions.MyContiniousMethod)).Wait();
             }
